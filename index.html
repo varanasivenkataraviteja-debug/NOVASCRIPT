@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaScript - AI News Synthesis</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+      :root {
+        --cyan-primary: #0ea5e9;
+        --purple-primary: #8b5cf6;
+        --indigo-primary: #6366f1;
+        --bg-main: #f8fafc;
+      }
+      body {
+        margin: 0;
+        background-color: var(--bg-main);
+        color: #0f172a;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+      }
+      .font-orbitron { font-family: 'Orbitron', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      
+      /* Laboratory Micro-Grid */
+      .bg-microgrid {
+        background-image: 
+          radial-gradient(rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+          radial-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px, 8px 8px;
+        background-position: 0 0, 0 0;
+      }
+
+      @keyframes scanline {
+        0% { transform: translateY(-100%); }
+        100% { transform: translateY(100%); }
+      }
+      .scanline-overlay {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(to bottom, transparent 0%, rgba(14, 165, 233, 0.03) 50%, transparent 100%);
+        animation: scanline 8s linear infinite;
+        pointer-events: none;
+        z-index: 40;
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.02), inset 0 0 32px rgba(255, 255, 255, 0.2);
+      }
+
+      .tech-border {
+        position: relative;
+        border: 1px solid rgba(14, 165, 233, 0.15);
+      }
+
+      .glow-cyan {
+        box-shadow: 0 0 20px rgba(14, 165, 233, 0.2);
+      }
+
+      .ripple-btn {
+        position: relative;
+        overflow: hidden;
+      }
+      .ripple-btn::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s ease-out, height 0.6s ease-out;
+      }
+      .ripple-btn:active::after {
+        width: 300%;
+        height: 300%;
+      }
+
+      ::-webkit-scrollbar { width: 5px; }
+      ::-webkit-scrollbar-track { background: transparent; }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(14, 165, 233, 0.3);
+        border-radius: 10px;
+      }
+
+      @keyframes slide-in-right {
+        from { transform: translateX(50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slide-in-left {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      .animate-slide-right { animation: slide-in-right 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+      .animate-slide-left { animation: slide-in-left 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards; }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "react/": "https://esm.sh/react@^19.2.4/",
+        "react": "https://esm.sh/react@^19.2.4",
+        "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+        "@google/genai": "https://esm.sh/@google/genai@^1.38.0"
+      }
+    }
+    </script>
+  </head>
+  <body class="bg-microgrid">
+    <div class="scanline-overlay"></div>
+    <div id="root"></div>
+  </body>
+</html>

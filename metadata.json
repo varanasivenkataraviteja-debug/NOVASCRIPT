@@ -1,0 +1,5 @@
+{
+  "name": "NovaScript: Futuristic News Generator",
+  "description": "A sci-fi inspired YouTube news script generator that fetches real-time news using Gemini AI and transforms them into professional video scripts with a built-in teleprompter.",
+  "requestFramePermissions": []
+}
